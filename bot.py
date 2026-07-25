@@ -1,26 +1,7 @@
 import os
-import mysql.connector
 
-print("Connecting to MySQL...")
-
-try:
-    conn = mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        port=int(os.getenv("DB_PORT")),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME"),
-        ssl_disabled=False,
-    )
-
-    print("✅ Connected successfully!")
-
-    cursor = conn.cursor()
-    cursor.execute("SELECT VERSION()")
-    print("MySQL Version:", cursor.fetchone()[0])
-
-    cursor.close()
-    conn.close()
-
-except Exception as e:
-    print("❌ Error:", e)
+print("DB_HOST =", os.getenv("DB_HOST"))
+print("DB_PORT =", os.getenv("DB_PORT"))
+print("DB_USER =", os.getenv("DB_USER"))
+print("DB_NAME =", os.getenv("DB_NAME"))
+print("DB_PASSWORD =", "FOUND" if os.getenv("DB_PASSWORD") else "NOT FOUND")
